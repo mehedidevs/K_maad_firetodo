@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "824988630192",
+    "project_id": "firetodo-5f9ca",
+    "storage_bucket": "firetodo-5f9ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824988630192:android:fd511dbb99197d65644f75",
+        "android_client_info": {
+          "package_name": "com.es.k_maad_firetodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824988630192-6i77a6efdh1098ls5iin9u4dpiveb6fj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.es.k_maad_firetodo",
+            "certificate_hash": "f328c88c3f1f6f0d9e51a8820174f6b7e6a362bc"
+          }
+        },
+        {
+          "client_id": "824988630192-mdis66oocth517g1f6kil3bdsmbtte6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDePS8kw24dt3n56wD9xfhDxIPl-FlARP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824988630192-mdis66oocth517g1f6kil3bdsmbtte6e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
