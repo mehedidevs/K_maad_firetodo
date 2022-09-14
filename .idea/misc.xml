@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android project/K_maad_firetodo/app/src/main/res/drawable/black_rect_bg.xml" value="0.263" />
+        <entry key="..\:/Android project/K_maad_firetodo/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2395" />
         <entry key="..\:/Android project/K_maad_firetodo/app/src/main/res/layout/activity_main.xml" value="0.32864583333333336" />
+        <entry key="..\:/Android project/K_maad_firetodo/app/src/main/res/layout/fragment_create_task.xml" value="0.3104166666666667" />
+        <entry key="..\:/Android project/K_maad_firetodo/app/src/main/res/layout/fragment_note_list_show.xml" value="0.32864583333333336" />
+        <entry key="..\:/Android project/K_maad_firetodo/app/src/main/res/layout/fragment_note_show_details.xml" value="0.32864583333333336" />
       </map>
     </option>
   </component>
