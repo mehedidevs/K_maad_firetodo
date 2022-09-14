@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/noteListShowFragment">
+
+    <fragment
+        android:id="@+id/noteListShowFragment"
+        android:name="com.es.k_maad_firetodo.ui.note.NoteListShowFragment"
+        android:label="fragment_note_list_show"
+        tools:layout="@layout/fragment_note_list_show" >
+        <action
+            android:id="@+id/action_noteListShowFragment_to_noteShowDetailsFragment"
+            app:destination="@id/noteShowDetailsFragment" />
+        <action
+            android:id="@+id/action_noteListShowFragment_to_createTaskFragment"
+            app:destination="@id/createTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteShowDetailsFragment"
+        android:name="com.es.k_maad_firetodo.ui.note.NoteShowDetailsFragment"
+        android:label="fragment_note_show_details"
+        tools:layout="@layout/fragment_note_show_details" />
+    <fragment
+        android:id="@+id/createTaskFragment"
+        android:name="com.es.k_maad_firetodo.ui.task.CreateTaskFragment"
+        android:label="fragment_create_task"
+        tools:layout="@layout/fragment_create_task" />
+</navigation>
