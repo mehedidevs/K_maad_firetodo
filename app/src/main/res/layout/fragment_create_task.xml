@@ -60,7 +60,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/done"
+        android:id="@+id/submit"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
@@ -68,7 +68,7 @@
         android:layout_marginBottom="45dp"
         android:background="@drawable/black_rect_bg"
 
-        android:text="Done"
+        android:text="Submit"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:backgroundTint="@color/black"

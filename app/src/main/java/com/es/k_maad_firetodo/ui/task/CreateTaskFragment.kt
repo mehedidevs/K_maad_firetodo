@@ -5,13 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.es.k_maad_firetodo.R
+import com.es.k_maad_firetodo.data.model.Note
 import com.es.k_maad_firetodo.databinding.FragmentCreateTaskBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class CreateTaskFragment : Fragment() {
 
     lateinit var binding: FragmentCreateTaskBinding
+
+    private val viewModel: TaskViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -35,6 +40,16 @@ class CreateTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
+
+        binding.submit.setOnClickListener {
+            val task = binding.taskEt.text.toString()
+
+
+            viewModel.addNote(Note("", task, "High", "" + System.currentTimeMillis()))
+
+
+        }
 
 
     }
