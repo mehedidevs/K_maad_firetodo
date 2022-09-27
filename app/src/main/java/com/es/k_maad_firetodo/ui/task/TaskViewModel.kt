@@ -14,5 +14,8 @@ class TaskViewModel @Inject constructor(var repositoryImpl: NoteRepositoryImpl) 
 
     fun getAllTaskData() = repositoryImpl.getAllTask()
 
+    val allNotes= repositoryImpl.allNotes
+
+
 
 }

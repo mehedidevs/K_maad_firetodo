@@ -7,6 +7,6 @@ interface NoteRepository {
 
     fun add(note: Note)
 
-    fun getAllTask(): List<Note>
+    fun getAllTask()
 
 }

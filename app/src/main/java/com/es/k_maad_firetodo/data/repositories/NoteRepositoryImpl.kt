@@ -1,10 +1,10 @@
 package com.es.k_maad_firetodo.data.repositories
 
-import androidx.lifecycle.LiveData
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.es.k_maad_firetodo.data.model.Note
 import com.es.k_maad_firetodo.utils.Constants
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
 
 class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFirestore) :
@@ -27,7 +27,10 @@ class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFires
 
     }
 
-    override fun getAllTask(): List<Note> {
+    val allNotes = MutableLiveData<List<Note>>()
+
+
+    override fun getAllTask() {
 
         val notes = arrayListOf<Note>()
 
@@ -35,22 +38,22 @@ class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFires
             .get()
             .addOnSuccessListener { snapshot ->
 
-            for (document in snapshot) {
-                val note = document.toObject(Note::class.java)
-                notes.add(note)
+                for (document in snapshot) {
+                    val note = document.toObject(Note::class.java)
+                    notes.add(note)
+
+
+                }
+
+                allNotes.value = notes
+
+                Log.i("TAG", "getAllTask: ${notes.size}")
+
+
+            }.addOnFailureListener {
+
 
             }
-
-
-        }.addOnFailureListener {
-
-
-        }
-
-
-
-
-        return notes
 
 
     }

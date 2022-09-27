@@ -39,10 +39,19 @@ class NoteListShowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getAllTaskData().forEach {
-            Log.i("TAG", "Task Name : ${it.noteText} ")
+       viewModel.getAllTaskData()
+
+        viewModel.allNotes.observe(viewLifecycleOwner) {
+
+            for (note in it) {
+                Log.i("TAG", "Task : $note ")
+
+            }
+
 
         }
+
+
 
 
 
