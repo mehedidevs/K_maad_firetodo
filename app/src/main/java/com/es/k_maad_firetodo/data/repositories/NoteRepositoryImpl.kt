@@ -13,7 +13,7 @@ class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFires
 
     override fun add(note: Note) {
 
-        val document = database.collection(Constants.NOTE).document()
+        val document =database.collection(Constants.NOTE).document()
 
         note.id = document.id
 

@@ -11,6 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.es.k_maad_firetodo.R
 import com.es.k_maad_firetodo.databinding.FragmentNoteListShowBinding
 import com.es.k_maad_firetodo.ui.task.TaskViewModel
+import com.es.k_maad_firetodo.utils.hide
+import com.es.k_maad_firetodo.utils.hideBtn
+import com.es.k_maad_firetodo.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,11 +42,46 @@ class NoteListShowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+        binding.clickBtn.setOnClickListener{
+
+          //binding.showImage.visibility= View.GONE
+
+            binding.showImage.hide()
+            binding.clickBtn.hideBtn()
+            toast("Clicked Hoise")
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        viewModel.getAllTaskData()
 
-        viewModel.allNotes.observe(viewLifecycleOwner) {
+        viewModel.allNotes.observe(viewLifecycleOwner) { notes ->
 
-            for (note in it) {
+            for (note in notes) {
                 Log.i("TAG", "Task : $note ")
 
             }

@@ -5,4 +5,5 @@ data class Note(
     var noteText: String = "",
     var priority: String = "",
     var timeMils: String = ""
+
 )
