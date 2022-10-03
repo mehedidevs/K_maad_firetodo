@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.es.k_maad_firetodo.R
 import com.es.k_maad_firetodo.databinding.FragmentNoteListShowBinding
 import com.es.k_maad_firetodo.ui.task.TaskViewModel
+import com.es.k_maad_firetodo.utils.UiState
 import com.es.k_maad_firetodo.utils.hide
 import com.es.k_maad_firetodo.utils.hideBtn
 import com.es.k_maad_firetodo.utils.toast
@@ -44,9 +45,9 @@ class NoteListShowFragment : Fragment() {
 
 
 
-        binding.clickBtn.setOnClickListener{
+        binding.clickBtn.setOnClickListener {
 
-          //binding.showImage.visibility= View.GONE
+            //binding.showImage.visibility= View.GONE
 
             binding.showImage.hide()
             binding.clickBtn.hideBtn()
@@ -77,13 +78,31 @@ class NoteListShowFragment : Fragment() {
 
 
 
-       viewModel.getAllTaskData()
+        viewModel.getAllTaskData()
 
-        viewModel.allNotes.observe(viewLifecycleOwner) { notes ->
+        viewModel.allNotes.observe(viewLifecycleOwner) { state ->
 
-            for (note in notes) {
-                Log.i("TAG", "Task : $note ")
 
+            when (state) {
+                is UiState.Loading -> {
+                    Log.i("TAG", "Loading....")
+
+
+                }
+                is UiState.Failure -> {
+                    Log.i("TAG", "Fail.... ${state.error}")
+
+
+                }
+                is UiState.Success -> {
+
+                    for (note in state.data) {
+                        Log.i("TAG", note.toString())
+
+                    }
+
+
+                }
             }
 
 

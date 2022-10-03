@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.es.k_maad_firetodo.data.model.Note
 import com.es.k_maad_firetodo.utils.Constants
+import com.es.k_maad_firetodo.utils.UiState
 import com.google.firebase.firestore.FirebaseFirestore
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFires
 
     override fun add(note: Note) {
 
-        val document =database.collection(Constants.NOTE).document()
+        val document = database.collection(Constants.NOTE).document()
 
         note.id = document.id
 
@@ -27,10 +28,10 @@ class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFires
 
     }
 
-    val allNotes = MutableLiveData<List<Note>>()
 
 
-    override fun getAllTask() {
+
+    override fun getAllTask(result: (UiState<List<Note>>) -> Unit) {
 
         val notes = arrayListOf<Note>()
 
@@ -41,20 +42,30 @@ class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFires
                 for (document in snapshot) {
                     val note = document.toObject(Note::class.java)
                     notes.add(note)
-
-
                 }
 
-                allNotes.value = notes
+                result.invoke(
+                    UiState.Success(notes)
+                )
 
-                Log.i("TAG", "getAllTask: ${notes.size}")
+                // allNotes.value = notes
+
+
 
 
             }.addOnFailureListener {
 
+                Log.i("TAG", "getAllTask:${it.localizedMessage} ")
+                result.invoke(
+                    UiState.Failure("Error ${it.localizedMessage}")
+                )
 
             }
 
+
+    }
+
+    override fun delete(note: Note) {
 
     }
 }
