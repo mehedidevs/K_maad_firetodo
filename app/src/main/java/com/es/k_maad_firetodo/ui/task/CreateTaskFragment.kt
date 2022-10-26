@@ -1,12 +1,11 @@
 package com.es.k_maad_firetodo.ui.task
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.es.k_maad_firetodo.R
 import com.es.k_maad_firetodo.data.model.Note
 import com.es.k_maad_firetodo.databinding.FragmentCreateTaskBinding
 import dagger.hilt.android.AndroidEntryPoint

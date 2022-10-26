@@ -1,7 +1,6 @@
 package com.es.k_maad_firetodo.data.repositories
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.es.k_maad_firetodo.data.model.Note
 import com.es.k_maad_firetodo.utils.Constants
 import com.es.k_maad_firetodo.utils.UiState

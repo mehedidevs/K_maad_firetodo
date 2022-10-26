@@ -16,7 +16,7 @@ object RepositoriesModule {
     @Provides
     @Singleton
     fun provideNoteRepo( database: FirebaseFirestore): NoteRepository {
-        // val  repo:NoteRepository= NoteRepositoryImpl(database)
+       // val  repo:NoteRepository= NoteRepositoryImpl(database)
       //  val  database= FirebaseFirestore.getInstance()
 
          return NoteRepositoryImpl(database)

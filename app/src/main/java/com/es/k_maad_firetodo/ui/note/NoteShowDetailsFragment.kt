@@ -1,13 +1,11 @@
 package com.es.k_maad_firetodo.ui.note
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import com.es.k_maad_firetodo.R
-import com.es.k_maad_firetodo.databinding.FragmentNoteListShowBinding
 
 
 class NoteShowDetailsFragment : Fragment() {

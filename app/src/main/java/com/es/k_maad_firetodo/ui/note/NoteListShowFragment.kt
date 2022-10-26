@@ -27,37 +27,21 @@ class NoteListShowFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-
         return if (this::binding.isInitialized) {
             binding.root
         } else {
             binding = FragmentNoteListShowBinding.inflate(inflater, container, false)
-
             return binding.root
         }
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
         binding.clickBtn.setOnClickListener {
-
-            //binding.showImage.visibility= View.GONE
-
-            binding.showImage.hide()
+             binding.showImage.hide()
             binding.clickBtn.hideBtn()
             toast("Clicked Hoise")
-
-
         }
-
-
-
 
 
 
