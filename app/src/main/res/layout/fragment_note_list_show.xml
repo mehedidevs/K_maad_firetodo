@@ -7,31 +7,17 @@
     tools:context=".ui.note.NoteListShowFragment">
 
 
-    <ImageView
-        android:id="@+id/showImage"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="50dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/logo"
-        app:layout_constraintBottom_toTopOf="@id/clickBtn"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-
-        android:id="@+id/clickBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:text="Click ME "
+        android:layout_margin="16dp"
+        android:id="@+id/noteListRecyclerview"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_note" />
 
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

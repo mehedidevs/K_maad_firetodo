@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.es.k_maad_firetodo.R
 import com.es.k_maad_firetodo.data.model.Note
 import com.es.k_maad_firetodo.databinding.FragmentNoteListShowBinding
+import com.es.k_maad_firetodo.ui.adapters.NoteAdapter
 import com.es.k_maad_firetodo.ui.task.TaskViewModel
 import com.es.k_maad_firetodo.utils.UiState
 import com.es.k_maad_firetodo.utils.hide
@@ -39,18 +40,22 @@ class NoteListShowFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.clickBtn.setOnClickListener {
-            binding.showImage.hide()
-            binding.clickBtn.hideBtn()
-            toast("Clicked Hoise")
+
+        binding.floatingActionButton.setOnClickListener {
+
+            findNavController().navigate(R.id.action_noteListShowFragment_to_createTaskFragment)
+
+
         }
 
-        viewModel.getAllTaskData()
-        viewModel.allTask.observe(viewLifecycleOwner) {
 
-            when (it) {
+
+        viewModel.getAllTaskData()
+        viewModel.allTask.observe(viewLifecycleOwner) { state ->
+
+            when (state) {
                 is UiState.Failure -> {
-                    Log.i("TAG", "Failure : ${it.message} ")
+                    Log.i("TAG", "Failure : ${state.message} ")
 
                 }
                 is UiState.Loading -> {
@@ -58,13 +63,24 @@ class NoteListShowFragment : Fragment() {
                     Log.i("TAG", "Loading ")
                 }
                 is UiState.Success -> {
-                    val data: List<Note> = it.data!!
+                    val data: List<Note> = state.data!!
                     Log.i("TAG", "onViewCreated: $data")
+
+
+                    setRecyclerView(data);
 
 
                 }
             }
         }
+
+
+    }
+
+    private fun setRecyclerView(data: List<Note>) {
+        val noteAdapter = NoteAdapter(requireActivity(), data)
+
+        binding.noteListRecyclerview.adapter = noteAdapter
 
 
     }

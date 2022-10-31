@@ -12,18 +12,23 @@ import javax.inject.Inject
 class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFirestore) :
     NoteRepository {
 
+    private var _responseCreateNote = MutableLiveData<UiState<String>>()
+
+    val responseCreateNote: LiveData<UiState<String>>
+        get() = _responseCreateNote
 
     override fun add(note: Note) {
+        _responseCreateNote.postValue(UiState.Loading())
 
         val document = database.collection(Constants.NOTE).document()
 
         note.id = document.id
 
         document.set(note).addOnSuccessListener {
-
+            _responseCreateNote.postValue(UiState.Success(message = Constants.NOTE_CRETED))
 
         }.addOnFailureListener {
-
+            _responseCreateNote.postValue(UiState.Failure(message = it.localizedMessage!!))
         }
 
 
@@ -50,7 +55,7 @@ class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFires
                     notes.add(note)
                 }
 
-                _allTask.postValue(UiState.Success(notes))
+                _allTask.postValue(UiState.Success(notes, null))
 
 
             }.addOnFailureListener {

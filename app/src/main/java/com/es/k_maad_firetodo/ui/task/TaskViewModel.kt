@@ -12,13 +12,13 @@ import javax.inject.Inject
 class TaskViewModel @Inject constructor(var repositoryImpl: NoteRepositoryImpl) : ViewModel() {
 
 
-
-
     fun addNote(note: Note) = repositoryImpl.add(note)
+    val createNoteResponse = repositoryImpl.responseCreateNote
 
 
     fun getAllTaskData() = repositoryImpl.getAllTask()
-   // val allNotes = MutableLiveData<UiState<List<Note>>>()
+
+    // val allNotes = MutableLiveData<UiState<List<Note>>>()
     val allTask = repositoryImpl.allTask
 
 
