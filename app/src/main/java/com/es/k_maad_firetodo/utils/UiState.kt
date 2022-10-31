@@ -1,12 +1,9 @@
 package com.es.k_maad_firetodo.utils
 
-sealed class UiState<out T> {
+sealed class UiState<T>(val data: T? = null, val message: String? = null) {
 
-    object Loading : UiState<Nothing>()
-
-    data class Success<out T>(val data: T) : UiState<T>()
-
-    data class Failure(val error: String?) : UiState<Nothing>()
-
+    class Loading<T>() : UiState<T>()
+    class Success<T>(data: T) : UiState<T>(data)
+    class Failure<T>(data: T? = null, message: String) : UiState<T>(data, message)
 
 }

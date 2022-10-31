@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.es.k_maad_firetodo.R
+import com.es.k_maad_firetodo.data.model.Note
 import com.es.k_maad_firetodo.databinding.FragmentNoteListShowBinding
 import com.es.k_maad_firetodo.ui.task.TaskViewModel
 import com.es.k_maad_firetodo.utils.UiState
@@ -16,6 +17,7 @@ import com.es.k_maad_firetodo.utils.hide
 import com.es.k_maad_firetodo.utils.hideBtn
 import com.es.k_maad_firetodo.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
+import javax.annotation.meta.When
 
 @AndroidEntryPoint
 class NoteListShowFragment : Fragment() {
@@ -38,72 +40,35 @@ class NoteListShowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.clickBtn.setOnClickListener {
-             binding.showImage.hide()
+            binding.showImage.hide()
             binding.clickBtn.hideBtn()
             toast("Clicked Hoise")
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         viewModel.getAllTaskData()
+        viewModel.allTask.observe(viewLifecycleOwner) {
 
-        viewModel.allNotes.observe(viewLifecycleOwner) { state ->
-
-
-            when (state) {
-                is UiState.Loading -> {
-                    Log.i("TAG", "Loading....")
-
+            when (it) {
+                is UiState.Failure -> {
+                    Log.i("TAG", "Failure : ${it.message} ")
 
                 }
-                is UiState.Failure -> {
-                    Log.i("TAG", "Fail.... ${state.error}")
+                is UiState.Loading -> {
 
-
+                    Log.i("TAG", "Loading ")
                 }
                 is UiState.Success -> {
-
-                    for (note in state.data) {
-                        Log.i("TAG", note.toString())
-
-                    }
+                    val data: List<Note> = it.data!!
+                    Log.i("TAG", "onViewCreated: $data")
 
 
                 }
             }
-
-
         }
 
-
-
-
-
-
-        binding.floatingActionButton.setOnClickListener {
-
-            findNavController().navigate(R.id.action_noteListShowFragment_to_createTaskFragment)
-
-        }
 
     }
 
 
 }
+

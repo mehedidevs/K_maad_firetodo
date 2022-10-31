@@ -1,6 +1,8 @@
 package com.es.k_maad_firetodo.data.repositories
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.es.k_maad_firetodo.data.model.Note
 import com.es.k_maad_firetodo.utils.Constants
 import com.es.k_maad_firetodo.utils.UiState
@@ -28,11 +30,16 @@ class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFires
     }
 
 
+    private var _allTask = MutableLiveData<UiState<List<Note>>>()
+    val allTask: LiveData<UiState<List<Note>>>
+        get() = _allTask
 
 
-    override fun getAllTask(result: (UiState<List<Note>>) -> Unit) {
+    override fun getAllTask() {
 
         val notes = arrayListOf<Note>()
+
+        _allTask.postValue(UiState.Loading())
 
         database.collection(Constants.NOTE)
             .get()
@@ -43,21 +50,14 @@ class NoteRepositoryImpl @Inject constructor(private val database: FirebaseFires
                     notes.add(note)
                 }
 
-                result.invoke(
-                    UiState.Success(notes)
-                )
-
-                // allNotes.value = notes
-
-
+                _allTask.postValue(UiState.Success(notes))
 
 
             }.addOnFailureListener {
-
-                Log.i("TAG", "getAllTask:${it.localizedMessage} ")
-                result.invoke(
-                    UiState.Failure("Error ${it.localizedMessage}")
-                )
+                _allTask.postValue(
+                    it.localizedMessage?.let { msg ->
+                        UiState.Failure(message = msg)
+                    })
 
             }
 

@@ -11,27 +11,15 @@ import javax.inject.Inject
 @HiltViewModel
 class TaskViewModel @Inject constructor(var repositoryImpl: NoteRepositoryImpl) : ViewModel() {
 
-    val allNotes = MutableLiveData<UiState<List<Note>>>()
+
 
 
     fun addNote(note: Note) = repositoryImpl.add(note)
 
-    fun getAllTaskData() {
-        allNotes.value = UiState.Loading
-        repositoryImpl.getAllTask {
 
-            allNotes.value = it
-        }
-
-
-
-
-    }
-
-
-    //fun getAllTaskData() = repositoryImpl.getAllTask()
-
-    //  val allNotes= repositoryImpl.allNotes
+    fun getAllTaskData() = repositoryImpl.getAllTask()
+   // val allNotes = MutableLiveData<UiState<List<Note>>>()
+    val allTask = repositoryImpl.allTask
 
 
 }
